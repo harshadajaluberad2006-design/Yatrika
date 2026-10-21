@@ -1,4 +1,4 @@
-import com.sun.net.httpserver.HttpExchange;
+﻿import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
@@ -21,7 +21,7 @@ import java.util.concurrent.CountDownLatch;
 
 public class YatrikaServer {
 
-    private static final int PORT = 8080;
+    private static final int PORT = Integer.parseInt(System.getenv().getOrDefault("PORT", "8080"));
 
     private static final Path WEB_ROOT =
             Paths.get(".").toAbsolutePath().normalize();
