@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact Us | Yatrika</title>
+    <meta name="description" content="Get in touch with Yatrika to plan your next unforgettable travel experience.">
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Yatrika<span>.</span></a>
+
+            <button class="menu-toggle"
+                    aria-label="Toggle navigation"
+                    aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="destinations.html">Destinations</a>
+                <a href="adventures.html">Adventures</a>
+                <a href="packages.html">Packages</a>
+                <a href="about.html">About</a>
+                <a href="testimonials.html">Stories</a>
+                <a href="contact.html" class="nav-cta active">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- Hero -->
+    <section class="page-hero contact-hero">
+        <div class="container">
+            <p class="eyebrow">LET'S PLAN SOMETHING BEAUTIFUL</p>
+
+            <h1>
+                Your next adventure
+                <span>starts with a hello.</span>
+            </h1>
+
+            <p class="hero-description">
+                Have a destination in mind, need some inspiration, or want
+                help planning your journey? We'd love to hear from you.
+            </p>
+
+            <a href="#contact-form" class="btn">Plan My Journey</a>
+        </div>
+    </section>
+
+
+    <!-- Contact Information -->
+    <section class="section">
+        <div class="container">
+
+            <div class="section-heading">
+                <p class="eyebrow">WE'RE HERE FOR YOU</p>
+                <h2>Let's talk about <span>your next trip.</span></h2>
+                <p>
+                    Tell us what you're dreaming of. We'll help you take
+                    the first step toward making it happen.
+                </p>
+            </div>
+
+            <div class="contact-info-grid">
+
+                <article class="contact-info-card">
+                    <div class="contact-icon">✉</div>
+                    <h3>Email Us</h3>
+                    <p>Send us your travel questions or ideas.</p>
+                    <a href="mailto:hello@yatrika.example">
+                        hello@yatrika.example
+                    </a>
+                </article>
+
+                <article class="contact-info-card">
+                    <div class="contact-icon">⌖</div>
+                    <h3>Our Office</h3>
+                    <p>Planning journeys for curious travelers everywhere.</p>
+                    <span>Ahmednagar, Maharashtra, India</span>
+                </article>
+
+                <article class="contact-info-card">
+                    <div class="contact-icon">✧</div>
+                    <h3>Travel Support</h3>
+                    <p>Share your plans and questions with our team.</p>
+                    <a href="#contact-form">Send an enquiry</a>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Contact Form -->
+    <section class="section section-soft" id="contact-form">
+        <div class="container contact-layout">
+
+            <div class="contact-copy">
+                <p class="eyebrow">TELL US YOUR DREAM</p>
+
+                <h2>
+                    Where would you
+                    <span>love to go?</span>
+                </h2>
+
+                <p>
+                    Whether you dream of relaxing on a tropical beach,
+                    exploring mountain trails, or discovering a new culture,
+                    share a few details with us.
+                </p>
+
+                <div class="contact-highlight">
+                    <span class="highlight-mark">✦</span>
+                    <div>
+                        <h3>Your journey, your way</h3>
+                        <p>
+                            Tell us your preferences so we can understand
+                            the kind of travel experience you're looking for.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="contact-highlight">
+                    <span class="highlight-mark">✦</span>
+                    <div>
+                        <h3>Every detail matters</h3>
+                        <p>
+                            Your destination, budget, and travel dates can
+                            help shape your plans.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <form class="contact-form" id="journeyForm">
+
+                <div class="form-heading">
+                    <h2>Plan your journey</h2>
+                    <p>Fill in the details below to get started.</p>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Full name</label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter your name"
+                            autocomplete="name"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="you@example.com"
+                            autocomplete="email"
+                            required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="destination">Dream destination</label>
+                        <select id="destination" name="destination" required>
+                            <option value="">Choose a destination</option>
+                            <option value="Maldives">Maldives</option>
+                            <option value="Ladakh">Ladakh, India</option>
+                            <option value="Japan">Japan</option>
+                            <option value="Bali">Bali, Indonesia</option>
+                            <option value="Paris">Paris, France</option>
+                            <option value="New Zealand">New Zealand</option>
+                            <option value="Cape Town">Cape Town</option>
+                            <option value="Banff">Banff, Canada</option>
+                            <option value="Egypt">Egypt</option>
+                            <option value="Other">Somewhere else</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="travelers">Number of travelers</label>
+                        <select id="travelers" name="travelers" required>
+                            <option value="">Select travelers</option>
+                            <option value="1">Just me</option>
+                            <option value="2">2 travelers</option>
+                            <option value="3-5">3–5 travelers</option>
+                            <option value="6+">6 or more</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="date">Preferred travel date</label>
+                        <input
+                            type="date"
+                            id="date"
+                            name="date">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="budget">Estimated budget</label>
+                        <select id="budget" name="budget">
+                            <option value="">Choose your budget</option>
+                            <option value="Under ₹20,000">Under ₹20,000</option>
+                            <option value="₹20,000–₹50,000">₹20,000–₹50,000</option>
+                            <option value="₹50,000–₹1,00,000">₹50,000–₹1,00,000</option>
+                            <option value="Above ₹1,00,000">Above ₹1,00,000</option>
+                            <option value="Flexible">Flexible</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Tell us about your trip</label>
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="5"
+                        placeholder="What kind of experience are you dreaming of?"
+                        required></textarea>
+                </div>
+
+                <button type="submit" class="btn form-submit">
+                    Send My Enquiry →
+                </button>
+
+                <p class="form-note">
+                    This is a front-end demo form. It needs a backend or
+                    form service to deliver enquiries.
+                </p>
+
+                <p id="formMessage" class="form-message" aria-live="polite"></p>
+
+            </form>
+
+        </div>
+    </section>
+
+
+    <!-- Final CTA -->
+    <section class="section">
+        <div class="container">
+            <div class="cta-panel">
+                <p class="eyebrow">THE WORLD IS CALLING</p>
+
+                <h2>
+                    Don't just dream about it.
+                    <span>Go experience it.</span>
+                </h2>
+
+                <p>
+                    Discover places that inspire you and create memories
+                    that will stay with you for years to come.
+                </p>
+
+                <a href="destinations.html" class="btn">
+                    Explore Destinations
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+
+            <div class="footer-brand">
+                <a href="index.html" class="logo">Yatrika<span>.</span></a>
+                <p>
+                    Travel beyond the ordinary. Discover the world,
+                    one meaningful journey at a time.
+                </p>
+            </div>
+
+            <div>
+                <h3>Explore</h3>
+                <div class="footer-links">
+                    <a href="destinations.html">Destinations</a>
+                    <a href="adventures.html">Adventures</a>
+                    <a href="packages.html">Packages</a>
+                </div>
+            </div>
+
+            <div>
+                <h3>Yatrika</h3>
+                <div class="footer-links">
+                    <a href="about.html">About Us</a>
+                    <a href="testimonials.html">Traveler Stories</a>
+                    <a href="contact.html">Contact Us</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="container footer-bottom">
+            <p>© 2026 Yatrika. Made for the love of travel.</p>
+            <p>Collect moments, not just miles.</p>
+        </div>
+    </footer>
+
+
+    <!-- Mobile Navigation and Demo Form -->
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yatrika | Admin Dashboard</title>
+
+    <style>
+        :root {
+            --plum: #28152f;
+            --plum-light: #42264b;
+            --lavender: #eee8fa;
+            --purple: #7954c8;
+            --coral: #f18b78;
+            --bg: #f7f5fb;
+            --white: #ffffff;
+            --text: #30243a;
+            --muted: #8b8495;
+            --border: #eee9f3;
+            --green: #21865b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        button, input, select {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 245px;
+            flex-shrink: 0;
+            background: var(--plum);
+            color: white;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+        }
+
+        .brand {
+            font-size: 29px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .brand span {
+            color: var(--coral);
+        }
+
+        .brand-subtitle {
+            margin-top: 6px;
+            color: #c8b9d1;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .nav-label {
+            color: #ad9ab9;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        .nav-item {
+            display: block;
+            padding: 13px 14px;
+            border-radius: 12px;
+            background: var(--plum-light);
+            color: white;
+            font-size: 14px;
+        }
+
+        .sidebar-note {
+            margin-top: auto;
+            border: 1px solid #594263;
+            background: #35203d;
+            padding: 16px;
+            border-radius: 14px;
+            font-size: 12px;
+            color: #d5c8dc;
+            line-height: 1.7;
+        }
+
+        .sidebar-note strong {
+            display: block;
+            color: white;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        main {
+            min-width: 0;
+            flex: 1;
+            padding: 32px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .eyebrow {
+            color: var(--purple);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .refresh-btn {
+            border: none;
+            border-radius: 10px;
+            padding: 12px 17px;
+            background: var(--plum);
+            color: white;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .refresh-btn:hover {
+            background: var(--plum-light);
+        }
+
+        .refresh-btn:disabled {
+            opacity: 0.6;
+            cursor: wait;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+
+        .stat-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 23px;
+            box-shadow: 0 5px 20px rgba(40, 21, 47, 0.035);
+        }
+
+        .stat-label {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 14px;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--plum);
+        }
+
+        .stat-description {
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 8px;
+        }
+
+        .panel {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(40, 21, 47, 0.035);
+        }
+
+        .panel-header {
+            padding: 23px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .panel-header h2 {
+            font-size: 19px;
+            margin-bottom: 6px;
+        }
+
+        .panel-header p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .count {
+            background: var(--lavender);
+            color: var(--purple);
+            border-radius: 20px;
+            padding: 7px 12px;
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .notice {
+            display: none;
+            margin: 16px 23px 0;
+            padding: 12px 14px;
+            border-radius: 9px;
+            font-size: 13px;
+            overflow-wrap: anywhere;
+        }
+
+        .notice.success {
+            display: block;
+            color: #176b48;
+            background: #e8f7ef;
+        }
+
+        .notice.error {
+            display: block;
+            color: #a32c36;
+            background: #fff0f0;
+        }
+
+        .toolbar {
+            padding: 18px 23px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .toolbar input,
+        .toolbar select {
+            min-width: 180px;
+            max-width: 100%;
+            padding: 11px 13px;
+            border: 1px solid #e4ddea;
+            border-radius: 9px;
+            background: white;
+            color: var(--text);
+            outline: none;
+        }
+
+        .toolbar input {
+            flex: 1;
+        }
+
+        .toolbar input:focus,
+        .toolbar select:focus {
+            border-color: var(--purple);
+        }
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            min-width: 1380px;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        thead {
+            background: #faf8fd;
+        }
+
+        th {
+            color: #766b80;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            font-weight: 800;
+            text-align: left;
+            padding: 16px 12px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+            overflow-wrap: anywhere;
+        }
+
+        td {
+            padding: 17px 12px;
+            border-bottom: 1px solid #f0edf4;
+            font-size: 13px;
+            line-height: 1.6;
+            vertical-align: top;
+            overflow-wrap: anywhere;
+            word-break: normal;
+        }
+
+        tbody tr:hover {
+            background: #fcfaff;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        th:nth-child(1), td:nth-child(1) { width: 55px; }
+        th:nth-child(2), td:nth-child(2) { width: 185px; }
+        th:nth-child(3), td:nth-child(3) { width: 220px; }
+        th:nth-child(4), td:nth-child(4) { width: 130px; }
+        th:nth-child(5), td:nth-child(5) { width: 85px; }
+        th:nth-child(6), td:nth-child(6) { width: 110px; }
+        th:nth-child(7), td:nth-child(7) { width: 135px; }
+        th:nth-child(8), td:nth-child(8) { width: 230px; }
+        th:nth-child(9), td:nth-child(9) { width: 160px; }
+
+        .person {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            min-width: 0;
+        }
+
+        .avatar {
+            width: 32px;
+            height: 32px;
+            flex: 0 0 32px;
+            border-radius: 50%;
+            background: var(--lavender);
+            color: var(--purple);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+
+        .person-details {
+            min-width: 0;
+        }
+
+        .person-name {
+            font-weight: 700;
+            color: var(--plum);
+            overflow-wrap: anywhere;
+        }
+
+        .email {
+            color: var(--muted);
+            font-size: 12px;
+            overflow-wrap: anywhere;
+        }
+
+        .destination {
+            display: inline-block;
+            background: #f2ecfc;
+            color: #6947ae;
+            border-radius: 6px;
+            padding: 4px 7px;
+            font-weight: 700;
+            font-size: 11px;
+            max-width: 100%;
+            overflow-wrap: anywhere;
+        }
+
+        .message-cell {
+            color: #71677a;
+            white-space: normal;
+        }
+
+        .empty {
+            padding: 45px 20px;
+            text-align: center;
+            color: var(--muted);
+        }
+
+        .empty strong {
+            display: block;
+            color: var(--plum);
+            font-size: 15px;
+            margin-bottom: 7px;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            color: var(--muted);
+            font-size: 12px;
+            padding: 18px 23px;
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 1000px) {
+            .sidebar {
+                width: 190px;
+            }
+
+            main {
+                padding: 22px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 650px) {
+            .layout {
+                display: block;
+            }
+
+            .sidebar {
+                width: 100%;
+                padding: 18px;
+                gap: 16px;
+            }
+
+            .sidebar-note {
+                display: none;
+            }
+
+            main {
+                padding: 18px 12px;
+            }
+
+            .topbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .panel-header {
+                padding: 17px;
+            }
+
+            .toolbar {
+                padding: 15px;
+            }
+
+            .toolbar input,
+            .toolbar select {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="layout">
+
+    <aside class="sidebar">
+        <div>
+            <div class="brand">Yatri<span>ka</span></div>
+            <div class="brand-subtitle">Travel management</div>
+        </div>
+
+        <div>
+            <div class="nav-label">MAIN MENU</div>
+            <div class="nav-item">✦ &nbsp; Enquiries dashboard</div>
+        </div>
+
+        <div class="sidebar-note">
+            <strong>Yatrika Admin</strong>
+            Manage traveller enquiries and review their trip details from one place.
+        </div>
+    </aside>
+
+    <main>
+        <header class="topbar">
+            <div>
+                <div class="eyebrow">OVERVIEW</div>
+                <h1>Enquiries Dashboard</h1>
+                <p class="subtitle">
+                    View and manage travel requests submitted through Yatrika.
+                </p>
+            </div>
+
+            <button type="button" class="refresh-btn" id="refreshBtn">
+                ↻ &nbsp; Refresh enquiries
+            </button>
+        </header>
+
+        <section class="stats">
+            <div class="stat-card">
+                <div class="stat-label">Total enquiries</div>
+                <div class="stat-value" id="totalCount">0</div>
+                <div class="stat-description">All saved travel requests</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-label">Unique destinations</div>
+                <div class="stat-value" id="destinationCount">0</div>
+                <div class="stat-description">
+                    Destinations requested by travellers
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-label">Upcoming trips</div>
+                <div class="stat-value" id="upcomingCount">0</div>
+                <div class="stat-description">
+                    Requests with today or a future travel date
+                </div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <h2>Traveller enquiries</h2>
+                    <p>
+                        Contact details and travel preferences submitted through the website.
+                    </p>
+                </div>
+                <div class="count" id="visibleCount">0 requests</div>
+            </div>
+
+            <div id="notice" class="notice" role="status" aria-live="polite"></div>
+
+            <div class="toolbar">
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Search name, email, destination or message..."
+                    aria-label="Search enquiries"
+                >
+
+                <select id="destinationFilter" aria-label="Filter by destination">
+                    <option value="">All destinations</option>
+                </select>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Traveller</th>
+                            <th>Email</th>
+                            <th>Destination</th>
+                            <th>Travellers</th>
+                            <th>Travel date</th>
+                            <th>Budget</th>
+                            <th>Message</th>
+                            <th>Submitted</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="enquiryBody">
+                        <tr>
+                            <td colspan="9" class="empty">
+                                <strong>Loading enquiries...</strong>
+                                Fetching saved requests from the server.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="footer">
+                <span>Yatrika Travel Management</span>
+                <span id="lastUpdated">Not refreshed yet</span>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script>
+    // CHANGED: Send requests to the Java backend on port 8080.
+    const API_URL = "http://localhost:8080/api/admin/enquiries";
+    const TOKEN_KEY = "yatrika_admin_token";
+
+    let enquiries = [];
+
+    const body = document.getElementById("enquiryBody");
+    const searchInput = document.getElementById("searchInput");
+    const destinationFilter = document.getElementById("destinationFilter");
+    const refreshBtn = document.getElementById("refreshBtn");
+    const notice = document.getElementById("notice");
+
+    function getAdminToken() {
+        let token = sessionStorage.getItem(TOKEN_KEY);
+
+        if (!token) {
+            token = prompt("Enter your Yatrika admin token:");
+
+            if (!token) {
+                return null;
+            }
+
+            token = token.trim();
+
+            if (!token) {
+                return null;
+            }
+
+            sessionStorage.setItem(TOKEN_KEY, token);
+        }
+
+        return token;
+    }
+
+    function showNotice(message, type) {
+        notice.textContent = message;
+        notice.className = "notice " + type;
+    }
+
+    function clearNotice() {
+        notice.textContent = "";
+        notice.className = "notice";
+    }
+
+    function escapeHTML(value) {
+        return String(value ?? "").replace(/[&<>"']/g, function(char) {
+            return {
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;"
+            }[char];
+        });
+    }
+
+    function field(item, names) {
+        for (const name of names) {
+            if (item[name] !== undefined && item[name] !== null) {
+                return item[name];
+            }
+        }
+
+        return "";
+    }
+
+    function getEnquiryList(data) {
+        if (Array.isArray(data)) {
+            return data;
+        }
+
+        if (data && Array.isArray(data.enquiries)) {
+            return data.enquiries;
+        }
+
+        if (data && Array.isArray(data.data)) {
+            return data.data;
+        }
+
+        if (data && Array.isArray(data.results)) {
+            return data.results;
+        }
+
+        throw new Error(
+            data?.message || "The server returned an unrecognised response."
+        );
+    }
+
+    async function loadEnquiries() {
+        clearNotice();
+
+        refreshBtn.disabled = true;
+        refreshBtn.textContent = "Loading...";
+
+        body.innerHTML = `
+            <tr>
+                <td colspan="9" class="empty">
+                    <strong>Loading enquiries...</strong>
+                    Fetching saved requests from the server.
+                </td>
+            </tr>
+        `;
+
+        try {
+            const token = getAdminToken();
+
+            if (!token) {
+                throw new Error("Admin token is required.");
+            }
+
+            const response = await fetch(API_URL, {
+                method: "GET",
+                cache: "no-store",
+                headers: {
+                    "Accept": "application/json",
+                    "X-Admin-Token": token
+                }
+            });
+
+            const raw = await response.text();
+
+            console.log("Admin API URL:", response.url);
+            console.log("Admin API status:", response.status);
+
+            let data;
+
+            try {
+                data = JSON.parse(raw);
+            } catch (parseError) {
+                throw new Error(
+                    "Response is not JSON. HTTP " + response.status +
+                    ". Response: " + raw.slice(0, 200)
+                );
+            }
+
+            if (!response.ok) {
+                if (response.status === 401 || response.status === 403) {
+                    sessionStorage.removeItem(TOKEN_KEY);
+                }
+
+                throw new Error(
+                    data.message || data.error || "HTTP " + response.status
+                );
+            }
+
+            enquiries = getEnquiryList(data);
+            updateDashboard();
+
+            showNotice(
+                "Loaded " + enquiries.length + " enquiries successfully.",
+                "success"
+            );
+
+            document.getElementById("lastUpdated").textContent =
+                "Last refreshed: " + new Date().toLocaleString();
+
+        } catch (error) {
+            console.error("Admin dashboard error:", error);
+
+            let message = error.message;
+
+            if (error instanceof TypeError) {
+                message =
+                    "Cannot connect to the Java API. Ensure YatrikaServer is running on port 8080. If this dashboard is hosted on another port, a CORS configuration may also be required.";
+            }
+
+            body.innerHTML = `
+                <tr>
+                    <td colspan="9" class="empty">
+                        <strong>Unable to load enquiries</strong>
+                        ${escapeHTML(message)}
+                    </td>
+                </tr>
+            `;
+
+            showNotice(message, "error");
+
+        } finally {
+            refreshBtn.disabled = false;
+            refreshBtn.textContent = "↻  Refresh enquiries";
+        }
+    }
+
+    function formatDate(value) {
+        if (!value) {
+            return "—";
+        }
+
+        const raw = String(value);
+
+        if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) {
+            const [year, month, day] = raw.split("-");
+            return `${day}-${month}-${year}`;
+        }
+
+        const parsed = new Date(raw);
+
+        if (Number.isNaN(parsed.getTime())) {
+            return raw;
+        }
+
+        return parsed.toLocaleString();
+    }
+
+    function updateDashboard() {
+        const destinations = new Set();
+        let upcoming = 0;
+
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        enquiries.forEach(function(item) {
+            const destination = String(
+                field(item, ["destination", "Destination"])
+            ).trim();
+
+            if (destination) {
+                destinations.add(destination.toLowerCase());
+            }
+
+            const travelDate = String(
+                field(item, ["travel_date", "travelDate"])
+            ).trim();
+
+            if (/^\d{4}-\d{2}-\d{2}$/.test(travelDate)) {
+                const date = new Date(travelDate + "T00:00:00");
+
+                if (!Number.isNaN(date.getTime()) && date >= today) {
+                    upcoming++;
+                }
+            }
+        });
+
+        document.getElementById("totalCount").textContent =
+            enquiries.length;
+
+        document.getElementById("destinationCount").textContent =
+            destinations.size;
+
+        document.getElementById("upcomingCount").textContent =
+            upcoming;
+
+        const previousDestination = destinationFilter.value;
+        const options = [...destinations].sort();
+
+        destinationFilter.innerHTML =
+            '<option value="">All destinations</option>' +
+            options.map(function(value) {
+                const original = enquiries.find(function(item) {
+                    return String(
+                        field(item, ["destination", "Destination"])
+                    ).trim().toLowerCase() === value;
+                });
+
+                const label = original
+                    ? field(original, ["destination", "Destination"])
+                    : value;
+
+                return `<option value="${escapeHTML(value)}">${escapeHTML(label)}</option>`;
+            }).join("");
+
+        if (options.includes(previousDestination)) {
+            destinationFilter.value = previousDestination;
+        }
+
+        renderTable();
+    }
+
+    function renderTable() {
+        const query = searchInput.value.trim().toLowerCase();
+        const selectedDestination = destinationFilter.value;
+
+        const filtered = enquiries.filter(function(item) {
+            const name = String(field(item, ["name", "Name"]));
+            const email = String(field(item, ["email", "Email"]));
+            const place = String(field(item, ["destination", "Destination"]));
+            const message = String(field(item, ["message", "Message"]));
+
+            const searchableText =
+                `${name} ${email} ${place} ${message}`.toLowerCase();
+
+            const matchesSearch = searchableText.includes(query);
+
+            const matchesDestination =
+                !selectedDestination ||
+                place.trim().toLowerCase() === selectedDestination;
+
+            return matchesSearch && matchesDestination;
+        });
+
+        document.getElementById("visibleCount").textContent =
+            `${filtered.length} ${filtered.length === 1 ? "request" : "requests"}`;
+
+        if (filtered.length === 0) {
+            body.innerHTML = `
+                <tr>
+                    <td colspan="9" class="empty">
+                        <strong>No matching enquiries</strong>
+                        Try another search or destination filter.
+                    </td>
+                </tr>
+            `;
+            return;
+        }
+
+        body.innerHTML = filtered.map(function(item) {
+            const id = field(item, ["id", "ID"]);
+            const name = field(item, ["name", "Name"]) || "Unknown traveller";
+            const email = field(item, ["email", "Email"]);
+            const destination = field(item, ["destination", "Destination"]);
+
+            const travelers = field(item, [
+                "travelers",
+                "travellers",
+                "travelers_count",
+                "Travelers"
+            ]);
+
+            const travelDate = field(item, ["travel_date", "travelDate"]);
+            const budget = field(item, ["budget", "Budget"]);
+            const message = field(item, ["message", "Message"]);
+
+            const submitted = field(item, [
+                "created_at",
+                "createdAt",
+                "submitted_at",
+                "submittedAt"
+            ]);
+
+            const initial =
+                String(name).trim().charAt(0).toUpperCase() || "?";
+
+            return `
+                <tr>
+                    <td>${escapeHTML(id || "—")}</td>
+
+                    <td>
+                        <div class="person">
+                            <div class="avatar">${escapeHTML(initial)}</div>
+                            <div class="person-details">
+                                <div class="person-name">${escapeHTML(name)}</div>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td class="email">${escapeHTML(email || "No email")}</td>
+
+                    <td>
+                        <span class="destination">
+                            ${escapeHTML(destination || "—")}
+                        </span>
+                    </td>
+
+                    <td>${escapeHTML(travelers || "—")}</td>
+                    <td>${escapeHTML(formatDate(travelDate))}</td>
+                    <td>${escapeHTML(budget || "—")}</td>
+                    <td class="message-cell">${escapeHTML(message || "—")}</td>
+                    <td>${escapeHTML(formatDate(submitted))}</td>
+                </tr>
+            `;
+        }).join("");
+    }
+
+    refreshBtn.addEventListener("click", loadEnquiries);
+    searchInput.addEventListener("input", renderTable);
+    destinationFilter.addEventListener("change", renderTable);
+
+    loadEnquiries();
+</script>
+</body>
+</html>

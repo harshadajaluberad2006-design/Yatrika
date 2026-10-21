@@ -1,0 +1,20 @@
+﻿# Java compiled files
+*.class
+
+# Logs
+*.log
+server-log.txt
+
+# Environment files and secrets
+.env
+.env.*
+!.env.example
+
+# IDE settings
+.idea/
+.vscode/
+*.iml
+
+# Operating system files
+.DS_Store
+Thumbs.db

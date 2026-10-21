@@ -1,0 +1,1719 @@
+
+/* =========================================
+   YATRIKA — PREMIUM TRAVEL WEBSITE
+   Theme: Midnight Plum + Sunset Coral + Lavender
+   ========================================= */
+
+
+/* 1. ROOT VARIABLES */
+
+:root {
+    --dark: #21172F;
+    --green: #514064;
+    --green-light: #EAE2F7;
+    --cream: #F8F4FC;
+    --white: #FFFFFF;
+    --orange: #FF795F;
+    --text: #352B40;
+    --muted: #786D83;
+    --border: #E8DFF0;
+    --shadow: 0 18px 50px rgba(33, 23, 47, 0.12);
+
+    --lavender: #C9B8FF;
+    --radius: 22px;
+    --transition: 0.3s ease;
+}
+
+
+/* 2. RESET AND GLOBAL STYLES */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+body {
+    font-family: "DM Sans", Arial, sans-serif;
+    background: var(--white);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+body,
+button,
+input,
+textarea,
+select {
+    font-family: "DM Sans", Arial, sans-serif;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+    font-size: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    color: var(--dark);
+    line-height: 1.2;
+}
+
+h1,
+h2 {
+    font-family: "Playfair Display", Georgia, serif;
+}
+
+p {
+    color: var(--muted);
+}
+
+::selection {
+    color: var(--white);
+    background: var(--green);
+}
+
+.container {
+    width: min(1160px, 90%);
+    margin: 0 auto;
+}
+
+.section {
+    padding: 100px 0;
+}
+
+.section-soft {
+    background: var(--cream);
+}
+
+.eyebrow {
+    color: var(--orange);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+}
+
+.section-heading {
+    max-width: 700px;
+    margin: 0 auto 48px;
+    text-align: center;
+}
+
+.section-heading h2 {
+    margin: 14px 0;
+    font-size: clamp(2rem, 4vw, 3.1rem);
+    letter-spacing: -1px;
+}
+
+.section-heading h2 span,
+.page-hero h1 span,
+.cta-panel h2 span {
+    color: var(--orange);
+}
+
+.section-heading > p:last-child {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+
+/* 3. NAVIGATION */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background: var(--dark);
+    box-shadow: 0 4px 25px rgba(33, 23, 47, 0.12);
+}
+
+.nav-container {
+    min-height: 82px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.logo {
+    color: var(--white);
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    flex-shrink: 0;
+}
+
+.logo span {
+    color: var(--orange);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.nav-links a {
+    position: relative;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: color var(--transition);
+}
+
+.nav-links a:not(.nav-cta):not(.nav-btn)::after {
+    content: "";
+    position: absolute;
+    bottom: -7px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--orange);
+    transition: width var(--transition);
+}
+
+.nav-links a:not(.nav-cta):not(.nav-btn):hover::after,
+.nav-links a:not(.nav-cta):not(.nav-btn).active::after {
+    width: 100%;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--white);
+}
+
+.nav-links .nav-cta,
+.nav-links .nav-btn {
+    padding: 11px 19px;
+    color: var(--dark);
+    background: var(--orange);
+    border-radius: 50px;
+    font-weight: 700;
+    transition:
+        background var(--transition),
+        transform var(--transition);
+}
+
+.nav-links .nav-cta:hover,
+.nav-links .nav-btn:hover {
+    background: #FF957F;
+    color: var(--dark);
+    transform: translateY(-2px);
+}
+
+.menu-toggle {
+    display: none;
+    color: var(--white);
+    background: transparent;
+    border: none;
+    font-size: 1.8rem;
+    line-height: 1;
+}
+
+
+/* 4. BUTTONS */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 14px 25px;
+    color: var(--dark);
+    background: var(--orange);
+    border: 1px solid var(--orange);
+    border-radius: 50px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    text-align: center;
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition),
+        background var(--transition);
+}
+
+.btn:hover {
+    background: #FF957F;
+    border-color: #FF957F;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(255, 121, 95, 0.25);
+}
+
+.btn-outline {
+    color: var(--dark);
+    background: transparent;
+    border: 1px solid var(--border);
+}
+
+.btn-outline:hover {
+    color: var(--white);
+    background: var(--dark);
+    border-color: var(--dark);
+}
+
+.btn-light {
+    color: var(--dark);
+    background: var(--white);
+    border-color: var(--white);
+}
+
+.btn-light:hover {
+    color: var(--dark);
+    background: var(--lavender);
+    border-color: var(--lavender);
+}
+
+
+/* 5. HOME PAGE HERO */
+
+.hero {
+    position: relative;
+    min-height: 690px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    color: var(--white);
+    background:
+        linear-gradient(
+            90deg,
+            rgba(33, 23, 47, 0.88) 0%,
+            rgba(33, 23, 47, 0.62) 52%,
+            rgba(33, 23, 47, 0.12) 100%
+        ),
+        url("images/maldives.jpg") center / cover no-repeat;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    padding: 100px 0;
+    animation: fadeUp 0.9s ease both;
+}
+
+.hero .eyebrow {
+    color: var(--lavender);
+}
+
+.hero h1 {
+    max-width: 750px;
+    margin: 22px 0;
+    color: var(--white);
+    font-size: clamp(3rem, 7vw, 5.7rem);
+    letter-spacing: -2px;
+    line-height: 1.08;
+}
+
+.hero h1 span {
+    color: var(--orange);
+}
+
+.hero p {
+    max-width: 580px;
+    margin-bottom: 30px;
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 1.05rem;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.hero .btn-outline {
+    color: var(--white);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.hero .btn-outline:hover {
+    color: var(--dark);
+    background: var(--white);
+}
+
+
+/* Optional home-page floating travel card */
+
+.hero-card {
+    position: absolute;
+    right: 5%;
+    bottom: 55px;
+    z-index: 2;
+    width: 260px;
+    padding: 20px;
+    background: rgba(248, 244, 252, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    animation: float 5s ease-in-out infinite;
+}
+
+.hero-card h3 {
+    margin-bottom: 6px;
+}
+
+.hero-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.86rem;
+}
+
+
+/* 6. INNER PAGE HERO */
+
+.page-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 105px 0 100px;
+    text-align: center;
+    background:
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(201, 184, 255, 0.18),
+            transparent 32%
+        ),
+        linear-gradient(135deg, var(--dark), #392849);
+}
+
+.page-hero .container {
+    position: relative;
+    z-index: 1;
+}
+
+.page-hero h1 {
+    max-width: 900px;
+    margin: 20px auto;
+    color: var(--white);
+    font-size: clamp(2.7rem, 6vw, 4.8rem);
+    letter-spacing: -1.5px;
+    line-height: 1.12;
+}
+
+.page-hero .hero-description {
+    max-width: 650px;
+    margin: 0 auto 30px;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 1.05rem;
+}
+
+.page-hero .eyebrow {
+    color: var(--lavender);
+}
+
+
+/* 7. GENERAL GRIDS */
+
+.grid-2,
+.grid-3 {
+    display: grid;
+    gap: 28px;
+}
+
+.grid-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+
+/* 8. DESTINATION CARDS */
+
+.destination-card {
+    position: relative;
+    min-height: 390px;
+    overflow: hidden;
+    background: var(--dark);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    isolation: isolate;
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition);
+}
+
+.destination-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 55px rgba(33, 23, 47, 0.2);
+}
+
+.destination-card img {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+}
+
+.destination-card:hover img {
+    transform: scale(1.08);
+}
+
+.destination-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+        180deg,
+        transparent 15%,
+        rgba(33, 23, 47, 0.2) 42%,
+        rgba(33, 23, 47, 0.9) 100%
+    );
+}
+
+.destination-content {
+    position: absolute;
+    right: 24px;
+    bottom: 25px;
+    left: 24px;
+    color: var(--white);
+}
+
+.destination-content h3 {
+    margin-bottom: 7px;
+    color: var(--white);
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 1.7rem;
+}
+
+.destination-content p {
+    color: rgba(255, 255, 255, 0.83);
+    font-size: 0.9rem;
+}
+
+.destination-tag {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 5px 11px;
+    color: var(--white);
+    background: rgba(201, 184, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 30px;
+    font-size: 0.75rem;
+}
+
+
+/* Support for destination cards with inline images */
+
+.destination-card:not(:has(.destination-content)) {
+    padding: 20px;
+}
+
+
+/* 9. GENERIC IMAGE CARDS */
+
+.image-card {
+    overflow: hidden;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: transform var(--transition);
+}
+
+.image-card:hover {
+    transform: translateY(-6px);
+}
+
+.image-card img {
+    width: 100%;
+    height: 245px;
+    object-fit: cover;
+}
+
+.image-card-content {
+    padding: 25px;
+}
+
+.image-card-content h3 {
+    margin: 10px 0;
+    font-size: 1.35rem;
+}
+
+.image-card-content p {
+    margin-bottom: 18px;
+}
+
+
+/* 10. ADVENTURE SECTIONS */
+
+.adventure-feature {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 55px;
+    margin-bottom: 85px;
+}
+
+.adventure-feature:last-child {
+    margin-bottom: 0;
+}
+
+.adventure-feature.reverse .image-frame {
+    order: 2;
+}
+
+.image-frame {
+    position: relative;
+    min-height: 390px;
+    overflow: hidden;
+    border-radius: 28px;
+    box-shadow: var(--shadow);
+}
+
+.image-frame img {
+    width: 100%;
+    height: 100%;
+    min-height: 390px;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+}
+
+.image-frame:hover img {
+    transform: scale(1.05);
+}
+
+.adventure-copy h2 {
+    margin: 15px 0;
+    font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.adventure-copy h2 span {
+    color: var(--orange);
+}
+
+.adventure-copy > p {
+    margin-bottom: 20px;
+}
+
+.adventure-list {
+    display: grid;
+    gap: 12px;
+    margin: 25px 0;
+    list-style: none;
+}
+
+.adventure-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: var(--text);
+}
+
+.adventure-list li::before {
+    content: "✦";
+    color: var(--orange);
+    font-weight: 700;
+}
+
+
+/* 11. ADVENTURE CARDS */
+
+.adventure-card {
+    overflow: hidden;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition);
+}
+
+.adventure-card:hover {
+    transform: translateY(-7px);
+    box-shadow: var(--shadow);
+}
+
+.adventure-card img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+}
+
+.adventure-card-content {
+    padding: 25px;
+}
+
+.adventure-card-content h3 {
+    margin: 10px 0;
+    font-size: 1.4rem;
+}
+
+.adventure-card-content p {
+    margin-bottom: 18px;
+}
+
+
+/* 12. TRAVEL PACKAGE CARDS */
+
+.package-card {
+    overflow: hidden;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(33, 23, 47, 0.06);
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition);
+}
+
+.package-card:hover {
+    transform: translateY(-7px);
+    box-shadow: var(--shadow);
+}
+
+.package-image {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.package-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.package-card:hover .package-image img {
+    transform: scale(1.06);
+}
+
+.package-badge {
+    position: absolute;
+    top: 17px;
+    left: 17px;
+    padding: 7px 13px;
+    color: var(--dark);
+    background: var(--lavender);
+    border-radius: 30px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.package-content {
+    padding: 25px;
+}
+
+.package-content h3 {
+    margin-bottom: 10px;
+    font-size: 1.45rem;
+}
+
+.package-content > p {
+    margin-bottom: 18px;
+}
+
+.package-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 18px 0;
+    color: var(--muted);
+    font-size: 0.83rem;
+}
+
+.package-price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+}
+
+.package-price strong {
+    color: var(--dark);
+    font-size: 1.4rem;
+}
+
+.package-price span {
+    color: var(--muted);
+    font-size: 0.78rem;
+}
+
+.package-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 17px;
+    color: var(--dark);
+    background: var(--green-light);
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: background var(--transition);
+}
+
+.package-btn:hover {
+    background: var(--lavender);
+}
+
+
+/* 13. TESTIMONIAL CARDS */
+
+.testimonial-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 30px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(33, 23, 47, 0.05);
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow);
+}
+
+.story-stars {
+    margin-bottom: 20px;
+    color: var(--orange);
+    font-size: 1.05rem;
+    letter-spacing: 3px;
+}
+
+.story-quote {
+    flex: 1;
+    margin-bottom: 25px;
+    color: var(--text);
+    font-size: 1rem;
+    line-height: 1.9;
+}
+
+.story-destination {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-bottom: 22px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.story-destination span {
+    color: var(--muted);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.story-destination strong {
+    color: var(--green);
+}
+
+.testimonial-person {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.testimonial-person img {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border: 2px solid var(--lavender);
+    border-radius: 50%;
+}
+
+.testimonial-person h3 {
+    margin-bottom: 4px;
+    font-size: 0.95rem;
+}
+
+.testimonial-person p {
+    font-size: 0.82rem;
+}
+
+
+/* 14. FEATURED STORY */
+
+.featured-story {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 55px;
+}
+
+.featured-story-image {
+    min-height: 430px;
+    overflow: hidden;
+    border-radius: 28px;
+    box-shadow: var(--shadow);
+}
+
+.featured-story-image img {
+    width: 100%;
+    height: 100%;
+    min-height: 430px;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.featured-story-image:hover img {
+    transform: scale(1.04);
+}
+
+.featured-story-content h2 {
+    margin: 17px 0;
+    font-size: clamp(2.1rem, 4vw, 3.2rem);
+}
+
+.featured-story-content h2 span {
+    color: var(--orange);
+}
+
+.featured-story-content p {
+    margin-bottom: 18px;
+}
+
+
+/* 15. MEMORY GALLERY */
+
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.memory-card {
+    position: relative;
+    min-height: 330px;
+    overflow: hidden;
+    background: var(--dark);
+    border-radius: var(--radius);
+    isolation: isolate;
+}
+
+.memory-card img {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+}
+
+.memory-card:hover img {
+    transform: scale(1.08);
+}
+
+.memory-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+        180deg,
+        transparent 30%,
+        rgba(33, 23, 47, 0.82) 100%
+    );
+}
+
+.memory-overlay {
+    position: absolute;
+    right: 22px;
+    bottom: 22px;
+    left: 22px;
+    color: var(--white);
+}
+
+.memory-overlay span {
+    color: var(--lavender);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.memory-overlay h3 {
+    margin-top: 7px;
+    color: var(--white);
+    font-size: 1.45rem;
+}
+
+
+/* 16. CTA PANEL */
+
+.cta-panel {
+    position: relative;
+    overflow: hidden;
+    padding: 75px 35px;
+    text-align: center;
+    background:
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(201, 184, 255, 0.16),
+            transparent 30%
+        ),
+        var(--dark);
+    border-radius: 30px;
+}
+
+.cta-panel .eyebrow {
+    color: var(--lavender);
+}
+
+.cta-panel h2 {
+    max-width: 760px;
+    margin: 18px auto;
+    color: var(--white);
+    font-size: clamp(2.1rem, 4.5vw, 3.6rem);
+}
+
+.cta-panel > p:not(.eyebrow) {
+    max-width: 650px;
+    margin: 0 auto 28px;
+    color: rgba(255, 255, 255, 0.78);
+}
+
+
+/* 17. ABOUT PAGE */
+
+.about-story {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 55px;
+}
+
+.about-story-image {
+    min-height: 420px;
+    overflow: hidden;
+    border-radius: 28px;
+}
+
+.about-story-image img {
+    width: 100%;
+    height: 100%;
+    min-height: 420px;
+    object-fit: cover;
+}
+
+.about-story-content h2 {
+    margin: 15px 0;
+    font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.about-story-content h2 span {
+    color: var(--orange);
+}
+
+.about-story-content p {
+    margin-bottom: 17px;
+}
+
+.value-card {
+    padding: 30px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: transform var(--transition);
+}
+
+.value-card:hover {
+    transform: translateY(-6px);
+}
+
+.value-icon {
+    display: grid;
+    width: 52px;
+    height: 52px;
+    margin-bottom: 20px;
+    place-items: center;
+    color: var(--dark);
+    background: var(--green-light);
+    border-radius: 16px;
+    font-size: 1.4rem;
+}
+
+.value-card h3 {
+    margin-bottom: 10px;
+}
+
+.mission-panel {
+    padding: 65px 35px;
+    text-align: center;
+    background: var(--dark);
+    color: var(--white);
+    border-radius: 28px;
+}
+
+.mission-panel .eyebrow {
+    color: var(--lavender);
+}
+
+.mission-panel h2 {
+    margin: 18px 0;
+    color: var(--white);
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    line-height: 1.2;
+}
+
+.mission-panel h2 span {
+    color: var(--orange);
+}
+
+.mission-panel p {
+    max-width: 680px;
+    margin: 0 auto 28px;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.9;
+}
+
+
+/* 18. CONTACT PAGE */
+
+.contact-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+}
+
+.contact-info-card {
+    padding: 30px 25px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-align: center;
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition);
+}
+
+.contact-info-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow);
+}
+
+.contact-icon {
+    display: grid;
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 20px;
+    place-items: center;
+    color: var(--dark);
+    background: var(--green-light);
+    border-radius: 18px;
+    font-size: 1.5rem;
+}
+
+.contact-info-card h3 {
+    margin-bottom: 10px;
+}
+
+.contact-info-card p {
+    margin-bottom: 12px;
+    font-size: 0.92rem;
+}
+
+.contact-info-card a,
+.contact-info-card > span {
+    color: var(--green);
+    font-size: 0.9rem;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.contact-info-card a:hover {
+    color: var(--orange);
+}
+
+.contact-layout {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    align-items: start;
+    gap: 60px;
+}
+
+.contact-copy {
+    padding-top: 15px;
+}
+
+.contact-copy h2 {
+    margin: 17px 0;
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+}
+
+.contact-copy h2 span {
+    color: var(--orange);
+}
+
+.contact-copy > p:not(.eyebrow) {
+    margin-bottom: 28px;
+}
+
+.contact-highlight {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-top: 25px;
+}
+
+.highlight-mark {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    place-items: center;
+    color: var(--dark);
+    background: var(--lavender);
+    border-radius: 13px;
+}
+
+.contact-highlight h3 {
+    margin-bottom: 7px;
+    font-size: 1.05rem;
+}
+
+.contact-highlight p {
+    font-size: 0.9rem;
+}
+
+.contact-form {
+    padding: 35px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 25px;
+    box-shadow: var(--shadow);
+}
+
+.form-heading {
+    margin-bottom: 28px;
+}
+
+.form-heading h2 {
+    margin-bottom: 8px;
+    font-size: 1.8rem;
+}
+
+.form-heading p {
+    font-size: 0.9rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    color: var(--dark);
+    font-size: 0.87rem;
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    min-width: 0;
+    padding: 13px 14px;
+    color: var(--text);
+    background: #FCFAFE;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    outline: none;
+    transition:
+        border-color var(--transition),
+        box-shadow var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(81, 64, 100, 0.1);
+}
+
+.form-group textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+.form-submit {
+    width: 100%;
+}
+
+.form-note {
+    margin-top: 15px;
+    font-size: 0.78rem;
+    line-height: 1.6;
+}
+
+.form-message {
+    margin-top: 14px;
+    color: var(--green);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+
+/* 19. FOOTER */
+
+.footer {
+    padding-top: 70px;
+    color: var(--white);
+    background: var(--dark);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 55px;
+    padding-bottom: 50px;
+}
+
+.footer-brand .logo {
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.footer-brand p {
+    max-width: 330px;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.9rem;
+}
+
+.footer-grid h3 {
+    margin-bottom: 20px;
+    color: var(--white);
+    font-size: 1rem;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-links a {
+    width: fit-content;
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 0.9rem;
+    transition: color var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--orange);
+}
+
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 22px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footer-bottom p {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.82rem;
+}
+
+
+/* 20. HOME PAGE EXTRAS */
+
+.journey-section {
+    padding: 80px 0;
+    background: var(--cream);
+}
+
+.step-card {
+    padding: 30px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: transform var(--transition);
+}
+
+.step-card:hover {
+    transform: translateY(-6px);
+}
+
+.step-number {
+    display: grid;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 20px;
+    place-items: center;
+    color: var(--dark);
+    background: var(--lavender);
+    border-radius: 15px;
+    font-weight: 700;
+}
+
+.step-card h3 {
+    margin-bottom: 10px;
+}
+
+
+/* 21. ANIMATIONS */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.hero-content,
+.section-heading {
+    animation: fadeUp 0.8s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+
+/* 22. TABLET RESPONSIVENESS */
+
+@media (max-width: 1000px) {
+    .nav-container {
+        min-height: 75px;
+    }
+
+    .nav-links {
+        gap: 16px;
+    }
+
+    .nav-links a {
+        font-size: 0.82rem;
+    }
+
+    .grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .adventure-feature,
+    .featured-story,
+    .about-story {
+        gap: 35px;
+    }
+
+    .hero-card {
+        right: 5%;
+        bottom: 30px;
+        width: 230px;
+    }
+
+    .contact-layout {
+        gap: 35px;
+    }
+}
+
+
+/* 23. MOBILE NAVIGATION */
+
+@media (max-width: 780px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-container {
+        position: relative;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        display: none;
+        align-items: stretch;
+        flex-direction: column;
+        gap: 0;
+        padding: 15px 5%;
+        background: var(--dark);
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 20px 30px rgba(33, 23, 47, 0.18);
+    }
+
+    .nav-links.show {
+        display: flex;
+        animation: fadeIn 0.25s ease both;
+    }
+
+    .nav-links a {
+        padding: 13px 5px;
+        font-size: 0.95rem;
+    }
+
+    .nav-links a:not(.nav-cta):not(.nav-btn)::after {
+        display: none;
+    }
+
+    .nav-links .nav-cta,
+    .nav-links .nav-btn {
+        width: fit-content;
+        margin-top: 8px;
+        padding: 11px 20px;
+    }
+
+    .hero {
+        min-height: 650px;
+    }
+
+    .hero-content {
+        padding: 85px 0 130px;
+    }
+
+    .hero-card {
+        right: 5%;
+        bottom: 22px;
+        left: 5%;
+        width: auto;
+    }
+
+    .section {
+        padding: 75px 0;
+    }
+
+    .page-hero {
+        padding: 80px 0;
+    }
+
+    .adventure-feature,
+    .featured-story,
+    .about-story,
+    .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .adventure-feature.reverse .image-frame {
+        order: 0;
+    }
+
+    .image-frame,
+    .image-frame img {
+        min-height: 320px;
+    }
+
+    .featured-story-image,
+    .featured-story-image img {
+        min-height: 330px;
+    }
+
+    .about-story-image,
+    .about-story-image img {
+        min-height: 330px;
+    }
+
+    .memory-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .contact-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 35px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+}
+
+
+/* 24. SMALL MOBILE SCREENS */
+
+@media (max-width: 540px) {
+    .container {
+        width: 90%;
+    }
+
+    .logo {
+        font-size: 1.8rem;
+    }
+
+    .hero {
+        min-height: 600px;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.7rem, 12vw, 4rem);
+        letter-spacing: -1px;
+    }
+
+    .hero p {
+        font-size: 0.95rem;
+    }
+
+    .hero-buttons {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+    }
+
+    .page-hero {
+        padding: 65px 0;
+    }
+
+    .page-hero h1 {
+        font-size: 2.55rem;
+        letter-spacing: -0.7px;
+    }
+
+    .page-hero .hero-description {
+        font-size: 0.95rem;
+    }
+
+    .section {
+        padding: 60px 0;
+    }
+
+    .section-heading {
+        margin-bottom: 32px;
+    }
+
+    .section-heading h2 {
+        font-size: 2.15rem;
+    }
+
+    .grid-2,
+    .grid-3,
+    .memory-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .destination-card {
+        min-height: 350px;
+    }
+
+    .adventure-feature {
+        margin-bottom: 55px;
+    }
+
+    .image-frame,
+    .image-frame img {
+        min-height: 270px;
+    }
+
+    .memory-card {
+        min-height: 290px;
+    }
+
+    .testimonial-card {
+        padding: 25px;
+    }
+
+    .cta-panel {
+        padding: 50px 22px;
+        border-radius: 22px;
+    }
+
+    .cta-panel h2 {
+        font-size: 2.1rem;
+    }
+
+    .mission-panel {
+        padding: 45px 22px;
+        border-radius: 20px;
+    }
+
+    .contact-form {
+        padding: 24px 18px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px 20px;
+    }
+
+    .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+    }
+}
